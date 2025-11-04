@@ -16,34 +16,53 @@ Este repositório contém a configuração do firmware ZMK (Zephyr Mechanical Ke
 
 ## 🔧 Características Habilitadas
 
+### Configurações de Hardware (lily58.conf)
+- ✅ **Encoder EC11**: Habilitado com trigger em thread global
+- ✅ **Display OLED**: Ativado com tela de status customizada
+- ✅ **Bluetooth**: Potência de transmissão aumentada (+8dBm)
+- ✅ **BLE Experimental**: Conexões otimizadas habilitadas
+- ✅ **ZMK Studio**: Modo de travamento desabilitado
+
+### Dependências Customizadas (west.yml)
+- ✅ **ZMK Firmware**: Versão main do repositório oficial
+- ✅ **Nice OLED Support**: Módulo `zmk-nice-oled` de mctechnology17
+  - Suporte para displays OLED e e-paper personalizados
+  - Shield `nice_oled` utilizado na build
+
 ### Funcionalidades Principais
 - ✅ Display OLED com status customizado
 - ✅ Encoder rotativo (controle de volume)
 - ✅ Potência de transmissão Bluetooth aumentada (+8dBm)
 - ✅ Conexões BLE experimentais otimizadas
 - ✅ ZMK Studio desbloqueado (sem trava)
+- ✅ Alternância entre USB e Bluetooth (output toggle)
 - ✅ 2 camadas de teclas personalizadas
+- ✅ Macro de screenshot otimizada com tempos ajustados
 
 ### Layout de Teclas
 
-#### Camada 0 - Default Layer
+#### Camada 0 - Base Layer
 Layout principal com teclas alfanuméricas, modificadores e acesso à camada inferior.
 
 **Características**:
 - Layout QWERTY padrão
-- Modificadores: Ctrl, Shift, Alt, GUI
+- Modificadores: Ctrl, Shift, Alt, GUI (Command)
 - Teclas de navegação: Home, End
 - Backspace e Enter nas posições do polegar
+- Nome de display: "base"
 
 #### Camada 1 - Lower Layer
 Camada com teclas de função, símbolos e controles do sistema.
 
 **Características**:
 - Teclas de função (F1-F12)
-- Controles Bluetooth (limpar, selecionar dispositivos)
+- Controles Bluetooth (limpar, selecionar dispositivos 0-4)
+- Toggle de saída USB/Bluetooth (OUT_TOG)
 - Controles de energia externa (on/off/toggle)
 - Símbolos especiais e parênteses
-- Macro de screenshot (⌘+⇧+4)
+- Teclas de navegação (setas direcionais)
+- Macro de screenshot otimizada (⌘+⇧+4) com timing ajustado
+- Nome de display: "low"
 
 ## 📦 Estrutura do Projeto
 
@@ -87,10 +106,16 @@ Edite o arquivo `config/lily58.keymap` para alterar o mapeamento de teclas. Cons
 ### Ajustando Configurações
 
 Edite `config/lily58.conf` para modificar:
-- Configurações de display
-- Configurações de encoder
-- Configurações de Bluetooth
+- Configurações de display (`CONFIG_ZMK_DISPLAY`)
+- Configurações de encoder (`CONFIG_EC11`)
+- Potência de transmissão Bluetooth (`CONFIG_BT_CTLR_TX_PWR`)
+- Configurações BLE experimentais (`CONFIG_ZMK_BLE_EXPERIMENTAL_CONN`)
 - Outras opções de hardware
+
+Edite `config/west.yml` para:
+- Atualizar versão do ZMK firmware
+- Adicionar ou remover módulos externos
+- Modificar dependências do projeto
 
 ## 📚 Recursos Úteis
 
