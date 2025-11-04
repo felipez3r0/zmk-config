@@ -16,6 +16,8 @@
             #binding-cells = <0>;
             bindings = <&kp LEFT_COMMAND &kp LEFT_SHIFT &kp NUMBER_4>;
             label = "MACRO_PRINT";
+            wait-ms = <30>;
+            tap-ms = <40>;
         };
     };
 
