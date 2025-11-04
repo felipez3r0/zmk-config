@@ -15,7 +15,7 @@
         macro_print: macro_print {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LG(NUMBER_4))>;
+            bindings = <&kp LGUI &kp LSHIFT &kp N4>;
             label = "MACRO_PRINT";
             wait-ms = <30>;
             tap-ms = <40>;
