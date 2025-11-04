@@ -15,7 +15,14 @@
         macro_print: macro_print {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LGUI &kp LSHIFT>, <&macro_tap &kp N4>, <&macro_release &kp LSHIFT &kp LGUI>;
+            bindings =
+                <&macro_press>,
+                <&kp LGUI &kp LSHIFT>,
+                <&macro_tap>,
+                <&kp N4>,
+                <&macro_release>,
+                <&kp LSHIFT &kp LGUI>;
+
             label = "MACRO_PRINT";
         };
     };
@@ -56,11 +63,11 @@
             //                     |      |      |      |        |  |       |      |       |       |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4                            &out OUT_TOG    &trans     &trans     &trans    &trans    &kp EQUAL
-&kp F1      &kp F2            &kp F3             &kp F4             &kp F5        &kp F6                                  &kp F7          &kp F8     &kp F9     &kp F10   &kp F11   &kp F12
-&kp GRAVE   &kp EXCL          &kp AT             &kp HASH           &kp DOLLAR    &kp PRCNT                               &kp CARET       &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp TILDE
-&trans      &ext_power EP_ON  &ext_power EP_OFF  &ext_power EP_TOG  &trans        &trans        &trans    &macro_print    &kp UP_ARROW    &kp MINUS  &kp PLUS   &kp LBRC  &kp RBRC  &kp PIPE
-                                                 &trans             &trans        &trans        &trans    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &trans
+&bt BT_CLR  &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3  &bt BT_SEL 4                            &out OUT_TOG    &trans     &trans        &trans    &trans    &kp EQUAL
+&kp F1      &kp F2            &kp F3             &kp F4             &kp F5        &kp F6                                  &kp F7          &kp F8     &kp F9        &kp F10   &kp F11   &kp F12
+&kp GRAVE   &kp EXCL          &kp AT             &kp HASH           &kp DOLLAR    &kp PRCNT                               &kp CARET       &kp AMPS   &kp ASTRK     &kp LPAR  &kp RPAR  &kp TILDE
+&trans      &ext_power EP_ON  &ext_power EP_OFF  &ext_power EP_TOG  &trans        &trans        &trans    &macro_print    &kp UP_ARROW    &kp MINUS  &kp PLUS      &kp LBRC  &kp RBRC  &kp PIPE
+                                                 &trans             &trans        &trans        &trans    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp CAPSLOCK
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
