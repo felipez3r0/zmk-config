@@ -25,6 +25,32 @@
 
             label = "MACRO_PRINT";
         };
+
+        // Envia Ctrl+Alt+Super+F11 ao Linux (troca o monitor para o Mac),
+        // depois muda para a camada "mac" e para o perfil BT do Mac.
+        ir_mac: ir_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap &kp LC(LA(LG(F11)))>,
+                <&macro_wait_time 300>,
+                <&macro_tap &to 0 &bt BT_SEL 0>;
+        };
+
+        // Volta para o perfil BT do Linux e a camada "win", espera reconectar
+        // e envia Ctrl+Alt+Super+F12 (devolve o monitor para o Linux).
+        ir_linux: ir_linux {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_tap &bt BT_SEL 2 &to 1>,
+                <&macro_wait_time 2000>,
+                <&macro_tap &kp LC(LA(LG(F12)))>;
+        };
     };
 
     keymap {
@@ -70,14 +96,14 @@
             display-name = "low";
 
             // ------------------------------------------------------------------------------------------------------------
-            // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
+            // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   | OUT  | MAC   | WIN   | >MAC | >LNX  |  DEL  |
             // |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
             // |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
             // |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
             //                     |      |      |      |        |  |       |      |       |       |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3      &bt BT_SEL 4                               &out OUT_TOG    &to 0      &to 1         &trans    &trans    &kp DELETE
+&bt BT_CLR  &bt BT_SEL 0      &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3      &bt BT_SEL 4                               &out OUT_TOG    &to 0      &to 1         &ir_mac   &ir_linux &kp DELETE
 &kp F1      &kp F2            &kp F3             &kp F4             &kp F5            &kp F6                                     &kp F7          &kp F8     &kp F9        &kp F10   &kp F11   &kp F12
 &kp GRAVE   &kp EXCL          &kp AT             &kp HASH           &kp DOLLAR        &kp PRCNT                                  &kp CARET       &kp AMPS   &kp ASTRK     &kp LPAR  &kp RPAR  &kp TILDE
 &sys_reset  &ext_power EP_ON  &ext_power EP_OFF  &ext_power EP_TOG  &trans            &kp PLUS      &kp EQUAL    &macro_print    &kp UP_ARROW    &kp MINUS  &kp PLUS      &kp LBRC  &kp RBRC  &kp PIPE
