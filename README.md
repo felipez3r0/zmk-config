@@ -64,6 +64,21 @@ Camada com teclas de função, símbolos e controles do sistema.
 - Macro de screenshot otimizada (⌘+⇧+4) com timing ajustado
 - Nome de display: "low"
 
+## 🖥️ Troca de entrada do monitor
+
+Na camada **Low**, a primeira linha do lado direito tem duas teclas que trocam a entrada do monitor LG junto com o perfil Bluetooth:
+
+| Tecla | Ação |
+|-------|------|
+| `>MAC` | Envia `Ctrl+Alt+Super+F11` ao Linux (monitor → Mac), vai para a camada `mac` e seleciona o perfil BT do Mac (`BT_SEL 0`) |
+| `>LNX` | Seleciona o perfil BT do Linux (`BT_SEL 2`), vai para a camada `win`, aguarda 2 s a reconexão e envia `Ctrl+Alt+Super+F12` (monitor → Linux) |
+
+Dependem dos atalhos do GNOME já configurados no Linux (que chamam o `ddcutil`):
+- `Ctrl+Alt+Super+F11` → entrada do monitor para o Mac
+- `Ctrl+Alt+Super+F12` → entrada do monitor de volta para o Linux
+
+Se o Bluetooth demorar a reconectar, aumente o `&macro_wait_time 2000` do `ir_linux` (por exemplo, para 3000).
+
 ## 📦 Estrutura do Projeto
 
 ```
